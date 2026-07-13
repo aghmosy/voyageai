@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
+  <title>VoyageAI</title>
+  <meta name="description" content="AI-powered travel planner and expense tracker" />
+  <meta name="theme-color" content="#0058be" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="VoyageAI" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind Config (shared design tokens from mockups) -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-tint": "#005ac2",
+            "on-secondary-fixed": "#0b1c30",
+            "on-tertiary-fixed": "#251a00",
+            "border-light": "#E2E8F0",
+            "surface-container": "#eaedff",
+            "tertiary-fixed": "#ffdf9a",
+            "outline": "#727785",
+            "border-dark": "#334155",
+            "tertiary-fixed-dim": "#f7be1d",
+            "on-secondary-container": "#54647a",
+            "primary-fixed": "#d8e2ff",
+            "on-secondary-fixed-variant": "#38485d",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#283044",
+            "on-primary-container": "#fefcff",
+            "on-surface-variant": "#424754",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#eef0ff",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "surface-dim": "#d2d9f4",
+            "surface-variant": "#dae2fd",
+            "surface-container-high": "#e2e7ff",
+            "primary-container": "#2170e4",
+            "tertiary-container": "#936f00",
+            "primary-fixed-dim": "#adc6ff",
+            "primary": "#0058be",
+            "on-primary-fixed-variant": "#004395",
+            "on-secondary": "#ffffff",
+            "surface": "#faf8ff",
+            "on-tertiary-fixed-variant": "#5a4300",
+            "bg-light": "#F8FAFC",
+            "outline-variant": "#c2c6d6",
+            "surface-bright": "#faf8ff",
+            "on-error-container": "#93000a",
+            "tertiary": "#755800",
+            "inverse-primary": "#adc6ff",
+            "background": "#faf8ff",
+            "on-tertiary-container": "#fffbff",
+            "surface-container-lowest": "#ffffff",
+            "on-background": "#131b2e",
+            "surface-light": "#FFFFFF",
+            "secondary-fixed-dim": "#b7c8e1",
+            "on-primary": "#ffffff",
+            "on-surface": "#131b2e",
+            "surface-container-low": "#f2f3ff",
+            "bg-dark": "#0F172A",
+            "secondary-container": "#d0e1fb",
+            "surface-dark": "#1E293B",
+            "secondary-fixed": "#d3e4fe",
+            "on-primary-fixed": "#001a42",
+            "surface-container-highest": "#dae2fd",
+            "secondary": "#505f76"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            "2xl": "1rem",
+            full: "9999px"
+          },
+          spacing: {
+            sm: "16px",
+            lg: "32px",
+            base: "4px",
+            gutter: "24px",
+            md: "24px",
+            xl: "48px",
+            xs: "8px",
+            "margin-mobile": "16px",
+            "container-max": "1440px"
+          },
+          fontFamily: {
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-caps": ["Inter"],
+            "body-sm": ["Inter"],
+            "tag": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-base": ["Inter"]
+          },
+          fontSize: {
+            "headline-lg-mobile": ["20px", { lineHeight: "28px", fontWeight: "700" }],
+            "label-caps": ["10px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+            "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "tag": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+            "headline-md": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+            "display": ["30px", { lineHeight: "38px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+            "body-base": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      -webkit-tap-highlight-color: transparent;
+      min-height: 100dvh;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Toggle switch */
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      background: #c2c6d6;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle-switch.active {
+      background: #0058be;
+    }
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .toggle-switch.active::after {
+      transform: translateX(20px);
+    }
+
+    /* Animate spin for loading */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+
+    /* Safe area for bottom nav */
+    .pb-safe {
+      padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+  </style>
+</head>
+
+<body class="bg-bg-light text-on-surface font-body-base min-h-screen pb-24">
+  <!-- TopAppBar -->
+  <header class="sticky top-0 w-full bg-surface/80 backdrop-blur-md border-b border-border-light shadow-sm flex justify-between items-center px-margin-mobile py-base z-50">
+    <div class="flex items-center gap-xs">
+      <span class="material-symbols-outlined text-primary" style="font-size: 28px;">explore</span>
+      <h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">VoyageAI</h1>
+    </div>
+    <div id="header-status" class="flex items-center gap-2">
+      <span id="offline-badge" class="hidden bg-tertiary-fixed text-on-tertiary-fixed px-2 py-1 rounded-full font-tag text-tag">Offline</span>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="app-main" class="pb-4">
+    <!-- Pages render here -->
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface border-t border-border-light shadow-sm rounded-t-xl">
+    <a href="#/plan" data-nav="explore" class="flex flex-col items-center justify-center px-4 py-1 active:scale-90 duration-150 transition-all cursor-pointer">
+      <span class="material-symbols-outlined">search</span>
+      <span class="font-label-caps text-label-caps">Explore</span>
+    </a>
+    <a href="#/itinerary" data-nav="itinerary" class="flex flex-col items-center justify-center px-4 py-1 active:scale-90 duration-150 transition-all cursor-pointer">
+      <span class="material-symbols-outlined">event_note</span>
+      <span class="font-label-caps text-label-caps">Itinerary</span>
+    </a>
+    <a href="#/expenses" data-nav="expenses" class="flex flex-col items-center justify-center px-4 py-1 active:scale-90 duration-150 transition-all cursor-pointer">
+      <span class="material-symbols-outlined">account_balance_wallet</span>
+      <span class="font-label-caps text-label-caps">Expenses</span>
+    </a>
+    <a href="#/profile" data-nav="profile" class="flex flex-col items-center justify-center px-4 py-1 active:scale-90 duration-150 transition-all cursor-pointer">
+      <span class="material-symbols-outlined">person</span>
+      <span class="font-label-caps text-label-caps">Profile</span>
+    </a>
+  </nav>
+
+  <!-- App Entry Point -->
+  <script type="module" src="src/app.js"></script>
+
+  <!-- Offline indicator -->
+  <script>
+    function updateOfflineBadge() {
+      const badge = document.getElementById('offline-badge');
+      if (badge) badge.classList.toggle('hidden', navigator.onLine);
+    }
+    window.addEventListener('online', updateOfflineBadge);
+    window.addEventListener('offline', updateOfflineBadge);
+    updateOfflineBadge();
+
+    // Vibrate on nav tap
+    document.querySelectorAll('nav a').forEach(el => {
+      el.addEventListener('click', () => {
+        if (navigator.vibrate) navigator.vibrate(10);
+      });
+    });
+  </script>
+</body>
+</html>

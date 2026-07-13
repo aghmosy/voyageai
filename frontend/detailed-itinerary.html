@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>VoyageAI | Detailed Itinerary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#005ac2",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary-fixed": "#251a00",
+                        "border-light": "#E2E8F0",
+                        "surface-container": "#eaedff",
+                        "tertiary-fixed": "#ffdf9a",
+                        "outline": "#727785",
+                        "border-dark": "#334155",
+                        "tertiary-fixed-dim": "#f7be1d",
+                        "on-secondary-container": "#54647a",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "on-primary-container": "#fefcff",
+                        "on-surface-variant": "#424754",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d2d9f4",
+                        "surface-variant": "#dae2fd",
+                        "surface-container-high": "#e2e7ff",
+                        "primary-container": "#2170e4",
+                        "tertiary-container": "#936f00",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary": "#0058be",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-secondary": "#ffffff",
+                        "surface": "#faf8ff",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "bg-light": "#F8FAFC",
+                        "outline-variant": "#c2c6d6",
+                        "surface-bright": "#faf8ff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#755800",
+                        "inverse-primary": "#adc6ff",
+                        "background": "#faf8ff",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#131b2e",
+                        "surface-light": "#FFFFFF",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "surface-container-low": "#f2f3ff",
+                        "bg-dark": "#0F172A",
+                        "secondary-container": "#d0e1fb",
+                        "surface-dark": "#1E293B",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-highest": "#dae2fd",
+                        "secondary": "#505f76"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "16px",
+                        "lg": "32px",
+                        "base": "4px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "xl": "48px",
+                        "xs": "8px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "tag": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-base": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                        "label-caps": ["10px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "tag": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-base antialiased">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full bg-surface/80 backdrop-blur-md border-b border-border-light shadow-sm flex justify-between items-center px-margin-mobile py-base z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-headline-md">explore</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">VoyageAI</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-xl font-tag text-tag hover:bg-primary transition-colors active:scale-95 duration-200">
+            Generate
+        </button>
+</header>
+<main class="pb-32">
+<!-- Hero Header -->
+<section class="relative h-[220px] w-full">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A lush tropical panoramic landscape of Southeast Asian limestone cliffs and emerald waters in the morning mist. The photography is high-end, professional travel stock style with a crisp, bright, modern light-mode aesthetic and soft blue undertones reflecting a premium travel experience." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzL9EE1yxPBN94CI6kbdAxqME06559qZdVs8yUaKjcIR1OMWBA4TgyKhGse-iHlSE77XCdK_S66d29kginf1X5xzxVEJopl8J6svsOwH_DTY0BIp31QfWCEcCpevwxmKH2OZu6FlTjbEiJYKDH1FloyApNAHQgYfAJD1bxKXO8FpN_dCkit6KDtj8aUOCAYzhEjowPHh4y49QrQR4wqokI7cd47JSa0ONFdUAuNMNoQUb5x7U0VX9-rBhSvEAu1-7IhVQmOoNzHCZy')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-margin-mobile">
+<div class="flex gap-2 mb-2">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-tag text-tag">Southeast Asia</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-tag text-tag">14 Days</span>
+</div>
+<h1 class="font-display text-display text-on-surface">Vietnam &amp; Thailand</h1>
+</div>
+</section>
+<!-- Quick Stats -->
+<div class="grid grid-cols-2 gap-4 px-margin-mobile mt-xs">
+<div class="bg-surface-light border border-border-light rounded-2xl p-4 shadow-sm flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">group</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">GROUP SIZE</p>
+<p class="font-headline-md text-headline-md">4 Adults</p>
+</div>
+</div>
+<div class="bg-surface-light border border-border-light rounded-2xl p-4 shadow-sm flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">payments</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">EST. BUDGET</p>
+<p class="font-headline-md text-headline-md">$8,450</p>
+</div>
+</div>
+</div>
+<!-- Itinerary Summary Table -->
+<section class="px-margin-mobile mt-lg">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Route Summary</h2>
+<span class="text-primary font-tag text-tag">View Map</span>
+</div>
+<div class="bg-surface-light border border-border-light rounded-2xl overflow-hidden shadow-sm">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-border-light">
+<tr>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant">LOCATION</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant">DATES</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light">
+<tr>
+<td class="px-4 py-4">
+<p class="font-headline-md text-headline-md">Bangkok</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thailand</p>
+</td>
+<td class="px-4 py-4 font-body-base text-body-base">Oct 12 - 16</td>
+</tr>
+<tr>
+<td class="px-4 py-4">
+<p class="font-headline-md text-headline-md">Chiang Mai</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thailand</p>
+</td>
+<td class="px-4 py-4 font-body-base text-body-base">Oct 16 - 20</td>
+</tr>
+<tr>
+<td class="px-4 py-4">
+<p class="font-headline-md text-headline-md">Luang Prabang</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Laos</p>
+</td>
+<td class="px-4 py-4 font-body-base text-body-base">Oct 20 - 24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Transport Section -->
+<section class="px-margin-mobile mt-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Flights &amp; Transport</h2>
+<div class="space-y-4">
+<!-- Transport Card 1 -->
+<div class="bg-surface-light border border-border-light rounded-2xl p-4 shadow-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex items-center justify-between mb-3">
+<span class="flex items-center gap-1 font-tag text-tag text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">flight_takeoff</span>
+                            Thai Airways • TG414
+                        </span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded font-tag text-[10px] uppercase">Confirmed</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile">BKK</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">10:30 AM</p>
+</div>
+<div class="flex-1 px-4 flex flex-col items-center">
+<div class="w-full border-t border-dashed border-border-light relative">
+<span class="material-symbols-outlined absolute left-1/2 -top-[12px] -translate-x-1/2 bg-surface-light px-1 text-primary">local_airport</span>
+</div>
+<p class="font-label-caps text-[9px] mt-1 text-on-surface-variant">1H 15M</p>
+</div>
+<div class="text-right">
+<p class="font-headline-lg-mobile text-headline-lg-mobile">CNX</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">11:45 AM</p>
+</div>
+</div>
+</div>
+<!-- Transport Card 2 -->
+<div class="bg-surface-light border border-border-light rounded-2xl p-4 shadow-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<div class="flex items-center justify-between mb-3">
+<span class="flex items-center gap-1 font-tag text-tag text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">directions_car</span>
+                            Private Transfer
+                        </span>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-tag text-[10px] uppercase">Pending</span>
+</div>
+<p class="font-body-base text-body-base">Hotel Pickup to Chiang Mai Airport</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Pickup: 08:30 AM • Toyota Vellfire</p>
+</div>
+</div>
+</section>
+<!-- Accommodation Cards (Horizontal Scroll) -->
+<section class="mt-lg">
+<h2 class="px-margin-mobile font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Accommodations</h2>
+<div class="flex overflow-x-auto gap-4 px-margin-mobile no-scrollbar pb-2">
+<!-- Hotel Card 1 -->
+<div class="min-w-[280px] bg-surface-light border border-border-light rounded-2xl overflow-hidden shadow-sm">
+<div class="h-40 w-full relative">
+<div class="h-full w-full bg-cover bg-center" data-alt="A luxury boutique hotel suite in Bangkok featuring modern Thai architecture, floor-to-ceiling windows overlooking the skyline, and plush white linens. The image has a high-key, airy, and sophisticated professional architectural photography look with bright blue sky visible outside." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCC152Z6M0ePd-h_uCUcU-KOTarCZXd_L93cMjsJ3fdOC1ZFR7dVnWbiXazYHz3BNPbFdV34ypVG7KtZgodpVOnWaSUbfEvSkCiXYH8hbC_3pcyWeb2xkImRI7N5mlxhedlv0toKUgY4f-cXb245lUahPMUmV_R6PnokPlfUA6PIni_yAxc4JR9IMXOnjMN5X2q69oLcPcm_HmGul2B2MHdvwB8pyjbl2ZhvR3abU84Bh6w_ic3TLyFJ_yLKCEsJl32cW8v845DoMor')"></div>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg shadow-sm">
+<p class="font-tag text-tag text-primary">4.9 ★</p>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-headline-md text-headline-md mb-1">Capella Bangkok</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Riverside • 4 Nights</p>
+<button class="w-full py-2 border border-primary text-primary rounded-xl font-tag text-tag hover:bg-primary/5 active:scale-95 transition-all">Hotel Details</button>
+</div>
+</div>
+<!-- Hotel Card 2 -->
+<div class="min-w-[280px] bg-surface-light border border-border-light rounded-2xl overflow-hidden shadow-sm">
+<div class="h-40 w-full relative">
+<div class="h-full w-full bg-cover bg-center" data-alt="A tranquil luxury eco-resort in Chiang Mai nestled among lush tropical gardens and teak wood structures. The lighting is soft morning sun, highlighting the organic textures and the premium, peaceful atmosphere of northern Thailand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCEVcMszLn3xVy_YrRCsnniAyjWvB1rZ6xirjh4qTeSLKYZdnhIMoDcNcXzfLcj2mF2fHcshOny7YLSWh5j-g8re-uQisnG23iEgNdKdvCRWGTR-pmwxwYNLT-c0V3dyMN_QCwFEux4VZVqr4fyU-XciNArKzVFrjxPRopM6VAN-GY99fQcjc5ngnnbZu3aqmn0isCJY001scAyWc8gX9Ldb8lbyzqkSsS05T9Hx7D8TF5qiniOnV13ZH1xN_px37pEg2ld_5o4svxX')"></div>
+<div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg shadow-sm">
+<p class="font-tag text-tag text-primary">4.8 ★</p>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-headline-md text-headline-md mb-1">Raya Heritage</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Mae Ping River • 4 Nights</p>
+<button class="w-full py-2 border border-primary text-primary rounded-xl font-tag text-tag hover:bg-primary/5 active:scale-95 transition-all">Hotel Details</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommended Activities & Dining (Bento Style) -->
+<section class="px-margin-mobile mt-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Daily Highlights</h2>
+<div class="grid grid-cols-2 gap-3">
+<!-- Activity 1 -->
+<div class="col-span-2 bg-surface-container-low rounded-2xl p-4 border border-border-light relative overflow-hidden">
+<div class="flex justify-between items-start mb-10">
+<div class="z-10">
+<span class="bg-primary text-white text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider mb-2 inline-block">Top Activity</span>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile">Grand Palace Tour</h3>
+<p class="font-body-sm text-body-sm text-on-secondary-container">Private Guide • 4 Hours</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">temple_buddhist</span>
+</div>
+<div class="flex gap-1 mt-4">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-surface-container-low bg-slate-300"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface-container-low bg-slate-400"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant self-center ml-2">4 Travelers confirmed</span>
+</div>
+</div>
+<!-- Dining 1 -->
+<div class="bg-white rounded-2xl p-4 border border-border-light shadow-sm flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-tertiary-container mb-2">restaurant</span>
+<h3 class="font-headline-md text-headline-md">Blue Elephant</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thai Fine Dining</p>
+</div>
+<p class="text-primary font-tag text-[10px] mt-4 font-bold">8:30 PM RSVP</p>
+</div>
+<!-- Activity 2 -->
+<div class="bg-white rounded-2xl p-4 border border-border-light shadow-sm flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary mb-2">rowing</span>
+<h3 class="font-headline-md text-headline-md">River Cruise</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Chao Phraya</p>
+</div>
+<p class="text-primary font-tag text-[10px] mt-4 font-bold">Sunset Trip</p>
+</div>
+</div>
+</section>
+<!-- Budget Summary -->
+<section class="px-margin-mobile mt-lg">
+<div class="bg-inverse-surface text-inverse-on-surface rounded-2xl p-6">
+<h2 class="font-headline-md text-headline-md mb-4 text-primary-fixed-dim">Budget Breakdown</h2>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-body-base text-body-base opacity-80">Accommodations</span>
+<span class="font-headline-md text-headline-md">$4,200</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-base text-body-base opacity-80">Flights &amp; Transport</span>
+<span class="font-headline-md text-headline-md">$2,800</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-base text-body-base opacity-80">Activities &amp; Dining</span>
+<span class="font-headline-md text-headline-md">$1,450</span>
+</div>
+<div class="pt-3 border-t border-white/10 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-primary-fixed-dim">Total Estimated</span>
+<span class="font-display text-display text-primary-fixed-dim">$8,450</span>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Instructions Textarea -->
+<section class="px-margin-mobile mt-lg">
+<div class="bg-surface-container-low p-5 rounded-2xl border border-border-light">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<h3 class="font-headline-md text-headline-md">Further AI Instructions</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Request changes to hotels, add specific dietary requirements, or shift dates.</p>
+<textarea class="w-full h-32 bg-surface-light border border-border-light rounded-xl p-4 font-body-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none" placeholder="e.g. Find me a vegetarian-friendly cooking class in Chiang Mai or swap Capella for a hotel closer to the airport..."></textarea>
+<button class="w-full mt-4 bg-primary text-white py-3 rounded-xl font-headline-md shadow-sm active:scale-95 transition-transform">
+                    Update Itinerary
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface border-t border-border-light">
+<div class="flex flex-col items-center justify-center text-on-secondary-container px-4 py-1 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_note</span>
+<span class="font-label-caps text-label-caps">Itinerary</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-secondary-container px-4 py-1 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-label-caps text-label-caps">Saved</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-secondary-container px-4 py-1 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.bg-surface-light').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.1s ease';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

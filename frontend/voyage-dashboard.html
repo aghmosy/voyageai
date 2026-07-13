@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>VoyageAI Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#005ac2",
+                    "on-secondary-fixed": "#0b1c30",
+                    "on-tertiary-fixed": "#251a00",
+                    "border-light": "#E2E8F0",
+                    "surface-container": "#eaedff",
+                    "tertiary-fixed": "#ffdf9a",
+                    "outline": "#727785",
+                    "border-dark": "#334155",
+                    "tertiary-fixed-dim": "#f7be1d",
+                    "on-secondary-container": "#54647a",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#283044",
+                    "on-primary-container": "#fefcff",
+                    "on-surface-variant": "#424754",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d2d9f4",
+                    "surface-variant": "#dae2fd",
+                    "surface-container-high": "#e2e7ff",
+                    "primary-container": "#2170e4",
+                    "tertiary-container": "#936f00",
+                    "primary-fixed-dim": "#adc6ff",
+                    "primary": "#0058be",
+                    "on-primary-fixed-variant": "#004395",
+                    "on-secondary": "#ffffff",
+                    "surface": "#faf8ff",
+                    "on-tertiary-fixed-variant": "#5a4300",
+                    "bg-light": "#F8FAFC",
+                    "outline-variant": "#c2c6d6",
+                    "surface-bright": "#faf8ff",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#755800",
+                    "inverse-primary": "#adc6ff",
+                    "background": "#faf8ff",
+                    "on-tertiary-container": "#fffbff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#131b2e",
+                    "surface-light": "#FFFFFF",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#131b2e",
+                    "surface-container-low": "#f2f3ff",
+                    "bg-dark": "#0F172A",
+                    "secondary-container": "#d0e1fb",
+                    "surface-dark": "#1E293B",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-primary-fixed": "#001a42",
+                    "surface-container-highest": "#dae2fd",
+                    "secondary": "#505f76"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "lg": "32px",
+                    "base": "4px",
+                    "gutter": "24px",
+                    "md": "24px",
+                    "xl": "48px",
+                    "xs": "8px",
+                    "margin-mobile": "16px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "tag": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-base": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                    "label-caps": ["10px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "tag": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-bg-light text-on-surface font-body-base min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full bg-surface/80 backdrop-blur-md border-b border-border-light shadow-sm flex justify-between items-center px-margin-mobile py-base w-full z-50">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="explore">explore</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">VoyageAI</h1>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-xl font-tag text-tag hover:bg-surface-container transition-colors active:scale-95 duration-200">
+            Generate
+        </button>
+</header>
+<main class="px-margin-mobile py-lg flex flex-col gap-lg">
+<!-- Summary Metrics -->
+<section class="grid grid-cols-3 gap-xs">
+<div class="bg-surface-light border border-border-light rounded-xl p-3 shadow-sm flex flex-col items-center text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">FOUND</span>
+<span class="font-headline-md text-headline-md text-primary">24</span>
+</div>
+<div class="bg-surface-light border border-border-light rounded-xl p-3 shadow-sm flex flex-col items-center text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">AVG BUDGET</span>
+<span class="font-headline-md text-headline-md text-primary">$3.2k</span>
+</div>
+<div class="bg-surface-light border border-border-light rounded-xl p-3 shadow-sm flex flex-col items-center text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">VISA</span>
+<span class="font-headline-md text-headline-md text-tertiary">Req.</span>
+</div>
+</section>
+<!-- Trip Parameters -->
+<section class="bg-surface-light border border-border-light rounded-2xl p-sm shadow-sm">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-primary" data-icon="tune">tune</span>
+<h2 class="font-headline-md text-headline-md">Trip Parameters</h2>
+</div>
+<form class="flex flex-col gap-sm">
+<div class="flex flex-col gap-base">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-1">REGION</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-body-base appearance-none focus:ring-2 focus:ring-primary">
+<option>Mediterranean Europe</option>
+<option>Southeast Asia</option>
+<option>East Asia</option>
+<option>Scandinavia</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="flex flex-col gap-base">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-1">GROUP SIZE</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-body-base focus:ring-2 focus:ring-primary" type="number" value="2"/>
+</div>
+<div class="flex flex-col gap-base">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-1">DURATION</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-body-base focus:ring-2 focus:ring-primary" type="text" value="12 Days"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-base">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-1">INTERESTS</label>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-primary/10 text-primary px-3 py-1.5 rounded-full font-tag text-tag border border-primary/20">Culinary</span>
+<span class="bg-primary/10 text-primary px-3 py-1.5 rounded-full font-tag text-tag border border-primary/20">Architecture</span>
+<span class="bg-slate-100 text-secondary px-3 py-1.5 rounded-full font-tag text-tag border border-slate-200">Wellness</span>
+<span class="bg-slate-100 text-secondary px-3 py-1.5 rounded-full font-tag text-tag border border-slate-200">+3 more</span>
+</div>
+</div>
+</form>
+</section>
+<!-- Recommended for You -->
+<section>
+<div class="flex justify-between items-end mb-sm px-1">
+<h2 class="font-headline-md text-headline-md">Recommended for You</h2>
+<button class="text-primary font-tag text-tag">View All</button>
+</div>
+<div class="flex overflow-x-auto gap-sm pb-4 snap-x snap-mandatory">
+<!-- Card 1: Santorini -->
+<div class="min-w-[280px] snap-center group">
+<div class="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-sm bg-surface-light border border-border-light">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A cinematic, wide-angle shot of Santorini at sunset, featuring the iconic white-washed buildings with vibrant blue domes perched on a volcanic cliff overlooking the deep indigo Aegean Sea. The sky is a gradient of warm oranges, soft pinks, and deep purples, reflecting the premium VoyageAI travel aesthetic with clean, high-contrast professional lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBCwnMxNEQM76utIypG0dTTWqjQgjBh1P4N-A90HCw7F9_n86gY8PDyHIE5kPpIsmpvmLBorS-4BENMYVNL9-jliOAIT-cl_bQyE__hKe7QUHIMtM9SsodW99assjvessW6pppKK6FTunKjAjN4QzXGokspScT33T21-ZaRuByhUGxASC5VAo5MwA6aT43AQ0dJxzDwdJljQQntXrIrPl7gVXA0j3Eyu-5C1QO3WcYHSZ2H9HGxJw3_w2l3Y_gbdXw3YFpf4CXnP36')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-sm right-sm bg-white/20 backdrop-blur-md text-white rounded-full px-2 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-tag font-tag">4.9</span>
+</div>
+<div class="absolute bottom-sm left-sm right-sm text-white">
+<p class="font-label-caps text-[10px] opacity-80 uppercase tracking-widest mb-1">GREECE</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Santorini</h3>
+<div class="flex justify-between items-center">
+<span class="bg-white/10 backdrop-blur-md px-2 py-1 rounded-lg text-tag font-tag">Est. $4,200</span>
+<button class="bg-white text-primary w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Kyoto -->
+<div class="min-w-[280px] snap-center group">
+<div class="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-sm bg-surface-light border border-border-light">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A serene, early morning view of a traditional wooden pagoda in Kyoto surrounded by blooming cherry blossom trees with soft pink petals. A quiet, stone-paved path leads into the frame, with atmospheric misty mountains in the far background. The lighting is soft and ethereal, emphasizing a sense of calm luxury and meticulous Japanese design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA-ocoMaYEh59FswaRgpX5QAhAm0CV63muLIWIHkjmPj-B6iwUlujB6vhaFkiSW5aSoh1Z4eiAgu_UyX_9xkLtgD3nw_MLwy16CrZ23RMAOI0qPQlqYWgrcglst-Mlul_c16-0VPST4-jYgdfm7XeL-U2yLJeG_S8Am8VBNUhqnFw4d1lVaXSOiMnEQLL1iJ5x8zSiGLiaEegMPetoI4hbYP3A-uvdfoO351brzC0RFsqX6nVh9q6mhDX1IcrWNRNJG9qA3UH1UED0q')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-sm right-sm bg-white/20 backdrop-blur-md text-white rounded-full px-2 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-tag font-tag">4.8</span>
+</div>
+<div class="absolute bottom-sm left-sm right-sm text-white">
+<p class="font-label-caps text-[10px] opacity-80 uppercase tracking-widest mb-1">JAPAN</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Kyoto</h3>
+<div class="flex justify-between items-center">
+<span class="bg-white/10 backdrop-blur-md px-2 py-1 rounded-lg text-tag font-tag">Est. $3,800</span>
+<button class="bg-white text-primary w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Dolomites -->
+<div class="min-w-[280px] snap-center group">
+<div class="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-sm bg-surface-light border border-border-light">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="The jagged, majestic peaks of the Italian Dolomites reflecting in a perfectly still, crystal-clear alpine lake. Surrounded by dense evergreen forests under a bright blue, crisp sky. The aesthetic is high-definition and adventurous, capturing the scale of the mountains with professional outdoor photography lighting and vibrant natural colors." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBC6SYhjXXGdGY1oZahYo5X_uq-lRM94vmUwYPm4dIqf2yMOCioX45RJhGHmZ9O3TzfQH7uar_hN_cMden5wV5jeoauXL7pu4MACgcecXs80_lZZVpQZvrzXcL6Kx6-so2KA8eAvDHu2yyfX--509YATQ46hlojaErJE2_oqqZeXY2JD3BjjJbAqtdhX-p6vUTkhgLSR_lS8_Ha5_BVajljMrQ4EP3HMVmcEUFx0E4uLRR2XVk-CtxeXXPZBKXZNFKaj0dfkHT-6Mc1')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-sm right-sm bg-white/20 backdrop-blur-md text-white rounded-full px-2 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-tag font-tag">5.0</span>
+</div>
+<div class="absolute bottom-sm left-sm right-sm text-white">
+<p class="font-label-caps text-[10px] opacity-80 uppercase tracking-widest mb-1">ITALY</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Dolomites</h3>
+<div class="flex justify-between items-center">
+<span class="bg-white/10 backdrop-blur-md px-2 py-1 rounded-lg text-tag font-tag">Est. $5,100</span>
+<button class="bg-white text-primary w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic Offerings (Bento-style micro section) -->
+<section class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container-low border border-border-light p-sm rounded-2xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="flight">flight</span>
+<div>
+<h4 class="font-headline-md text-body-base font-bold">Smart Flights</h4>
+<p class="text-body-sm text-on-surface-variant">Real-time optimization.</p>
+</div>
+</div>
+<div class="bg-surface-container-low border border-border-light p-sm rounded-2xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="hotel">hotel</span>
+<div>
+<h4 class="font-headline-md text-body-base font-bold">Curated Stays</h4>
+<p class="text-body-sm text-on-surface-variant">Top-rated boutique hotels.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface border-t border-border-light shadow-sm rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 duration-150 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container px-4 py-1 hover:bg-surface-container-low active:scale-90 duration-150 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span class="font-label-caps text-label-caps">Itinerary</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container px-4 py-1 hover:bg-surface-container-low active:scale-90 duration-150 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span class="font-label-caps text-label-caps">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container px-4 py-1 hover:bg-surface-container-low active:scale-90 duration-150 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', () => {
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(10);
+                }
+            });
+        });
+
+        // Horizontal Scroll Snap reveal animation logic (optional placeholder)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-50');
+                } else {
+                    entry.target.classList.add('opacity-50');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.snap-center').forEach(card => observer.observe(card));
+    </script>
+</body></html>
