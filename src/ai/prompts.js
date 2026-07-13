@@ -20,12 +20,21 @@ TRIP PARAMETERS:
 MANDATORY TRAVELLER INSTRUCTIONS (HIGHEST PRIORITY):
 ${inputs.aiInstructions || 'No additional instructions provided.'}
 
-Treat these instructions as requirements, not preferences. They override generic recommendation choices where necessary. If the traveller names a destination they are definitely visiting, that exact city and country MUST appear in the recommendations (as the first recommendation) and must never be substituted or omitted. Honour any specified number of days. If they say accommodation is free, provided by friends/family, or not needed in a city, budget $0 for accommodation for those nights.
+Treat these instructions as requirements, not preferences. They override generic recommendation choices where necessary.
 
-TASK: Recommend 3-5 country + city combinations in the ${inputs.region} region that best match these parameters.
+IMPORTANT ROUTE RULES:
+- Each item in "destinations" is one COMPLETE ${inputs.duration}-day trip route, not a separate single-city suggestion.
+- If the traveller names multiple cities they want or need to visit, put ALL of those cities together in the SAME first route's "cities" array, in the order requested. Never split required cities into separate recommendation cards.
+- The first route must include every explicitly named city and country; never substitute or omit them.
+- Other route options may vary optional stops, but must still include all mandatory cities.
+- The cities and their stays must fill the full ${inputs.duration}-day journey. Honour every specified stay length exactly and sensibly allocate the remaining days among the other cities.
+- For a multi-country route, set "country" to a concise list such as "Netherlands, France & Spain".
+- If accommodation is free, provided by friends/family, or not needed in a city, budget $0 for accommodation for those nights.
+
+TASK: Recommend 3-5 complete ${inputs.duration}-day route options in the ${inputs.region} region that best match these parameters.
 
 For each destination, provide:
-1. Country and cities to visit
+1. All countries and cities included in the complete route
 2. 3-5 highly rated activities matched to the selected interests
 3. Estimated TOTAL trip cost in USD (flights from ${settings.homeCity || 'home city'} + accommodation + food + activities, scaled to group size of ${inputs.groupSize}, duration of ${inputs.duration} days, and ${inputs.budgetTier} budget tier)
 4. Cost breakdown (flights, accommodation, food, activities)
@@ -37,8 +46,8 @@ You MUST respond with ONLY a valid JSON object matching this exact structure:
 {
   "destinations": [
     {
-      "country": "string",
-      "cities": ["string"],
+      "country": "string (list all countries for a multi-country route)",
+      "cities": ["string (include all cities in this complete route, in travel order)"],
       "activities": ["string (activity name - brief description)"],
       "estimatedTotalUSD": number,
       "costBreakdown": {

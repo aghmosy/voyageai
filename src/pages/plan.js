@@ -443,7 +443,7 @@ async function handleGenerate(container, settings, resultsEl) {
       messages: [{
         role: 'user',
         content: inputs.aiInstructions
-          ? `Please recommend destinations while strictly following these mandatory instructions: ${inputs.aiInstructions}`
+          ? `Create complete ${inputs.duration}-day route options while strictly following these mandatory instructions: ${inputs.aiInstructions}. Put all cities I named together in the same route; do not present them as separate alternatives.`
           : 'Please recommend destinations based on my preferences.',
       }],
       tools: null,
