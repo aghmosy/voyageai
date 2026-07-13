@@ -375,7 +375,7 @@ async function generateItinerary(trip, settings) {
     messages: [
       {
         role: 'user',
-        content: `Please create a detailed ${inputs.duration}-day itinerary for ${destination.country} visiting ${destination.cities.join(', ')}. The transport list must begin with travel from ${settings.homeCity || 'my home city'} to the first destination and end with travel back home. Include restaurant recommendations with source links.`,
+        content: `Please create a detailed ${inputs.duration}-day itinerary for ${destination.country} visiting ${destination.cities.join(', ')}. Strictly apply these mandatory traveller instructions: ${inputs.aiInstructions || 'none'}. The transport list must begin with travel from ${settings.homeCity || 'my home city'} to the first destination and end with travel back home. Include restaurant recommendations with source links.`,
       },
     ],
     tools,

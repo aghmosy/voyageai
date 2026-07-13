@@ -440,7 +440,12 @@ async function handleGenerate(container, settings, resultsEl) {
       model: settings.model,
       baseUrl: settings.baseUrl,
       system: systemPrompt,
-      messages: [{ role: 'user', content: 'Please recommend destinations based on my preferences.' }],
+      messages: [{
+        role: 'user',
+        content: inputs.aiInstructions
+          ? `Please recommend destinations while strictly following these mandatory instructions: ${inputs.aiInstructions}`
+          : 'Please recommend destinations based on my preferences.',
+      }],
       tools: null,
       // Keep destination generation in structured-output mode as well.
       jsonSchema: { type: 'object' },

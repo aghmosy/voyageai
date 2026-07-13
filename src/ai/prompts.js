@@ -16,7 +16,11 @@ TRIP PARAMETERS:
 - Travel interests: ${inputs.interests.join(', ')}
 - Month of travel: ${inputs.month}
 - Budget tier: ${inputs.budgetTier} (${inputs.budgetPerDay} per person per day)
-${inputs.aiInstructions ? `- Additional instructions: ${inputs.aiInstructions}` : ''}
+
+MANDATORY TRAVELLER INSTRUCTIONS (HIGHEST PRIORITY):
+${inputs.aiInstructions || 'No additional instructions provided.'}
+
+Treat these instructions as requirements, not preferences. They override generic recommendation choices where necessary. If the traveller names a destination they are definitely visiting, that exact city and country MUST appear in the recommendations (as the first recommendation) and must never be substituted or omitted. Honour any specified number of days. If they say accommodation is free, provided by friends/family, or not needed in a city, budget $0 for accommodation for those nights.
 
 TASK: Recommend 3-5 country + city combinations in the ${inputs.region} region that best match these parameters.
 
@@ -61,7 +65,11 @@ TRIP DETAILS:
 - Interests: ${inputs.interests.join(', ')}
 - Month of travel: ${inputs.month}
 - Home city: ${settings.homeCity || 'Not specified'}
-${inputs.aiInstructions ? `- Additional instructions: ${inputs.aiInstructions}` : ''}
+
+MANDATORY TRAVELLER INSTRUCTIONS (HIGHEST PRIORITY):
+${inputs.aiInstructions || 'No additional instructions provided.'}
+
+Treat these instructions as fixed requirements. Preserve every explicitly named destination and exact stay length. If accommodation is free, provided by friends/family, or not needed in a city, do not recommend a hotel there and assign $0 accommodation cost for those nights. These requirements override the generic tasks below.
 
 TASK: Create a comprehensive itinerary with:
 1. Route summary — cities with date ranges
