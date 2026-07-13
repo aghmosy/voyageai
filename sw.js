@@ -1,4 +1,4 @@
-const CACHE_NAME = 'voyageai-v7';
+const CACHE_NAME = 'voyageai-v8';
 const APP_SHELL = [
   './',
   './index.html',

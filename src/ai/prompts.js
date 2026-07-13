@@ -24,9 +24,11 @@ Treat these instructions as requirements, not preferences. They override generic
 
 IMPORTANT ROUTE RULES:
 - Each item in "destinations" is one COMPLETE ${inputs.duration}-day trip route, not a separate single-city suggestion.
-- If the traveller names multiple cities they want or need to visit, put ALL of those cities together in the SAME first route's "cities" array, in the order requested. Never split required cities into separate recommendation cards.
-- The first route must include every explicitly named city and country; never substitute or omit them.
-- Other route options may vary optional stops, but must still include all mandatory cities.
+- First identify FIXED ANCHOR destinations from firm language such as "we are going", "we will stay", "must visit", a fixed number of days, staying with friends/family, or an existing accommodation arrangement. Every route option MUST include every fixed anchor, its specified stay length, and its accommodation arrangement. Never substitute or omit a fixed anchor.
+- Treat softer language such as "I like", "would like", "interested in", or "could visit" as OPTIONAL preferences unless the traveller also describes them as definite. Use these preferences to create different alternatives for the remaining days.
+- Put all fixed anchors and the chosen optional stops together in each route's "cities" array, in travel order. Never present a fixed anchor as a separate alternative.
+- Make the route options meaningfully different after the fixed portion of the trip. For example, if Amsterdam is fixed for 5 days of a 14-day trip, every route must contain Amsterdam for 5 days, while the remaining 9 days may use different combinations of preferred or suitable cities.
+- The first route should satisfy as many optional named preferences as practical; later routes can offer sensible alternatives while retaining every fixed anchor.
 - The cities and their stays must fill the full ${inputs.duration}-day journey. Honour every specified stay length exactly and sensibly allocate the remaining days among the other cities.
 - For a multi-country route, set "country" to a concise list such as "Netherlands, France & Spain".
 - If accommodation is free, provided by friends/family, or not needed in a city, budget $0 for accommodation for those nights.
