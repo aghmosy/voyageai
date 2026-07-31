@@ -25,9 +25,7 @@ function buildRequest({ apiKey, model, system, messages, tools, jsonSchema, base
       { role: 'system', content: system },
       ...messages.map((m) => ({ role: m.role, content: m.content }))
     ],
-    // Detailed multi-day itineraries can exceed 4K output tokens. Truncating
-    // them mid-object produces JSON.parse errors that look like bad syntax.
-    max_tokens: 8192
+    max_completion_tokens: 8192
   };
 
   // Standard OpenAI needs model in body; Azure gets it from the URL
