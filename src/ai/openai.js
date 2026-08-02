@@ -92,12 +92,37 @@ export async function completeOpenAI({ apiKey, model, system, messages, tools, j
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
+    const errMsg = errorData.error?.message || '';
+
+    // Auto-retry: strip unsupported parameters and try again
+    if (response.status === 400 && errMsg.includes('unsupported parameter')) {
+      const retryBody = { ...body };
+      if (errMsg.includes('max_completion_tokens')) {
+        delete retryBody.max_completion_tokens;
+      } else if (errMsg.includes('max_tokens')) {
+        delete retryBody.max_tokens;
+        retryBody.max_completion_tokens = 8192;
+      }
+      if (errMsg.includes('response_format')) {
+        delete retryBody.response_format;
+      }
+      const retryResp = await fetch(url, { method: 'POST', headers, body: JSON.stringify(retryBody) });
+      if (retryResp.ok) {
+        const retryData = await retryResp.json();
+        const retryText = retryData.choices?.[0]?.message?.content || '';
+        if (retryText) {
+          try { return { parsed: parseJSON(retryText), raw: retryText, toolResults: [] }; }
+          catch { return { parsed: null, raw: retryText, toolResults: [] }; }
+        }
+      }
+    }
+
     if (response.status === 401) throw new Error('Invalid API key. Please check your API key.');
     if (response.status === 404) throw new Error(isAzure
       ? `Deployment "${model}" not found. Check your deployment name and endpoint URL.`
       : `Model "${model}" not found.`);
     if (response.status === 429) throw new Error('Rate limit exceeded. Please wait a moment and try again.');
-    throw new Error(errorData.error?.message || `API error: ${response.status}`);
+    throw new Error(errMsg || `API error: ${response.status}`);
   }
 
   const data = await response.json();

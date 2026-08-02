@@ -305,13 +305,14 @@ function bindPersonalInfoEvents(container) {
 function buildVisitedCountriesSection(settings) {
   const visited = settings.visitedCountries || [];
   const count = visited.length;
-  const pct = ((count / 195) * 100).toFixed(1);
+  const total = ALL_COUNTRIES.length;
+  const pct = ((count / total) * 100).toFixed(1);
 
   return `
     <section class="bg-surface-light border border-border-light rounded-2xl p-sm shadow-sm mb-4">
       <h2 class="font-headline-md text-headline-md mb-1">Visited Countries</h2>
       <p id="visited-counter" class="text-body-sm text-on-surface-variant mb-3">
-        ${count} of 195 countries visited (${pct}%)${getVisitedFlair(count)}
+        ${count} of ${total} countries visited (${pct}%)${getVisitedFlair(count)}
       </p>
 
       <div class="flex gap-2 mb-3">
@@ -369,7 +370,7 @@ function getVisitedFlair(count) {
   if (count < 50) return ' — world explorer!';
   if (count < 100) return ' — legendary wanderer!';
   if (count < 150) return ' — almost there!';
-  if (count >= 195) return ' — you have seen it ALL!';
+  if (count >= ALL_COUNTRIES.length) return ' — you have seen it ALL!';
   return ' — incredible!';
 }
 
@@ -389,8 +390,9 @@ function bindVisitedCountriesEvents(container) {
 
   function updateCounter() {
     const count = (currentSettings.visitedCountries || []).length;
-    const pct = ((count / 195) * 100).toFixed(1);
-    counterEl.textContent = `${count} of 195 countries visited (${pct}%)${getVisitedFlair(count)}`;
+    const total = ALL_COUNTRIES.length;
+    const pct = ((count / total) * 100).toFixed(1);
+    counterEl.textContent = `${count} of ${total} countries visited (${pct}%)${getVisitedFlair(count)}`;
   }
 
   function attachCheckboxListeners() {
